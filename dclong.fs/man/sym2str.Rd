@@ -3,12 +3,15 @@
 \alias{symbolToString}
 \title{Character and String Manipulation.}
 \usage{
-  symbolToString(x)
+  symbolToString(x, eval = TRUE)
 
-  sym2str(x)
+  sym2str(x, eval = TRUE)
 }
 \arguments{
   \item{x}{any object or even undefined symbol.}
+
+  \item{eval}{logical; If TRUE, function and calls are
+  evaluated; otherwise, they are preserved.}
 }
 \value{
   a string by coercing an object, a call or even an

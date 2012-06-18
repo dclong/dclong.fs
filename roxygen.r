@@ -1,3 +1,9 @@
-#' use roxygen2 to generate help document
+#!/usr/bin/env Rscript
 library(roxygen2)
-roxygenize('dclong.fs')
+roxygenize("dclong.fs")
+f = 'dclong.fs/R/.Rhistory'
+if(file.exists(f)){
+    file.remove(f)
+}
+# system('rm dclong.fs/R/.Rhistory')
+

@@ -3,6 +3,7 @@
 #' @description Convert objects, calls or even undefined symbols to characters if possible. 
 #' It's used to make input of character more convenient (no need to type double or single quotation mark).
 #' @param x any object or even undefined symbol.
+#' @param eval logical; If TRUE, function and calls are evaluated; otherwise, they are preserved.
 #' @return a string by coercing an object, a call or even an undefined symbol to characters.
 #' @note This function works well with undefined simple symbols (which doen't have spaces in it), strings, calls that return strings. 
 #' For other kind of objects, calls, symbols and so on, the result of this function is unpredictable. So it should be used cautiously.
