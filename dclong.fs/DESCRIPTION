@@ -1,0 +1,22 @@
+Package: dclong.fs
+Type: Package
+Title: File and Directory Manipulation
+Version: 1.0-1
+Date: 2011-03-20
+Author: Chuanlong Benjamin Du
+Maintainer: <dclong@iastate.edu>
+Description: This packages offers many ways to open files and directories in R,
+    to change files (either name or content) and directories (name of
+    directories), to search a string in files, to display files, to output
+    result to files, and so on.
+License: GPL-2
+Collate:
+    'sym2str.r'
+    'trim.r'
+    'capitalize.r'
+    'dir.extension.r'
+    'string-replace.r'
+    'dir-def.r'
+    'is.file.r'
+    'path.r'
+    'history.r'
