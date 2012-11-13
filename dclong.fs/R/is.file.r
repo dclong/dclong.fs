@@ -68,9 +68,6 @@ is.r = function(path,...){
 }
 #' @export 
 #' @rdname file
-is.R = is.r
-#' @export 
-#' @rdname file
 is.rdata = function(path,...){
     is.extension(extension=".rdata",path=path,...)
 }
