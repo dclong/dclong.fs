@@ -52,5 +52,7 @@ h = function(pattern,select,old,new,preview=FALSE,max.show=25,reverse = FALSE,la
     if(preview){
         return(cat(command,"\n"))
     }
-    eval(parse(text=command))
+    # print the command
+    cat(command,'\n')
+    eval(parse(text=command), envir=.GlobalEnv)
 }
