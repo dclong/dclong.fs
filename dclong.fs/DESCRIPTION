@@ -20,3 +20,5 @@ Collate:
     'is.file.r'
     'path.r'
     'history.r'
+    'readText.r'
+    'readMatrix.r.r'

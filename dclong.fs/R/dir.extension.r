@@ -158,6 +158,30 @@ function(path=".",dd,pattern,exact=FALSE,all.files=FALSE,full.names=FALSE,recurs
 }
 #' @export 
 #' @rdname dir
+dir.cpp <-
+function(path=".",dd,pattern,exact=FALSE,all.files=FALSE,full.names=FALSE,recursive=FALSE,include.dirs=FALSE,lazy.input=TRUE,...)
+{
+  if(lazy.input){
+    path=symbolToString(substitute(path))
+  }
+  dir.extension(extension=".cpp",path=path,dd=dd,pattern=pattern,exact=exact,
+                all.files=all.files,full.names=full.names,recursive=recursive,
+                include.dirs=include.dirs,lazy.input=FALSE)
+}
+#' @export 
+#' @rdname dir
+dir.c <-
+function(path=".",dd,pattern,exact=FALSE,all.files=FALSE,full.names=FALSE,recursive=FALSE,include.dirs=FALSE,lazy.input=TRUE,...)
+{
+  if(lazy.input){
+    path=symbolToString(substitute(path))
+  }
+  dir.extension(extension=".c",path=path,dd=dd,pattern=pattern,exact=exact,
+                all.files=all.files,full.names=full.names,recursive=recursive,
+                include.dirs=include.dirs,lazy.input=FALSE)
+}
+#' @export 
+#' @rdname dir
 dir.bin <-
 function(path=".",dd,pattern,exact=FALSE,all.files=FALSE,full.names=FALSE,recursive=FALSE,include.dirs=FALSE,lazy.input=TRUE,...)
 {
