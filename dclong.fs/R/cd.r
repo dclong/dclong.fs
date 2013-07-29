@@ -3,7 +3,7 @@
 
 #' @description Change work directory to the given one.
 #'
-#'If the name of the directory that you want to change to is a simple one 
+#' If the name of the directory that you want to change to is a simple one 
 #' (without space and other special symbols), 
 #' and it's not an object in the current workspace, 
 #' then you don't have to use double or single quotation marks. 
