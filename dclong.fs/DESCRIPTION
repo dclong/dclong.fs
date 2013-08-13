@@ -23,3 +23,4 @@ Collate:
     'dir_def.r'
     'replace.r'
     'cd.r'
+    'change.r'
