@@ -13,7 +13,11 @@
 tranv = function(v.old, f, v.new, ...){
     n = length(v.old)
     for(i in 1:n){
-        assign(x=v.new[i], value=f(v.old[i], ...), pos=1)
+        if(missing(v.new){
+            f(v.old[i], ...)
+        }else
+            assign(x=v.new[i], value=f(v.old[i], ...), pos=1)
+        }
     }
 } 
 #' Run the function \code{f} with specified parameters.
