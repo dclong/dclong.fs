@@ -1,7 +1,8 @@
 
 #' @title Get and Set Working Directory
 
-#' @description Change work directory to the given one.
+#' @description Linux style of getting work directoy
+#' and changing work directory.
 #'
 #' If the name of the directory that you want to change to is a simple one 
 #' (without space and other special symbols), 
@@ -37,3 +38,6 @@ cd <- function(path,dd=NULL,lazy.input=TRUE)
   setwd(path)
 }
 
+#' Linux style function for getting current work directory.
+#' @export
+pwd = getwd
