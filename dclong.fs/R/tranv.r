@@ -13,7 +13,7 @@
 tranv = function(v.old, f, v.new, ...){
     n = length(v.old)
     for(i in 1:n){
-        if(missing(v.new){
+        if(missing(v.new)){
             f(v.old[i], ...)
         }else
             assign(x=v.new[i], value=f(v.old[i], ...), pos=1)
