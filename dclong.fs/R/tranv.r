@@ -1,5 +1,7 @@
-#' Transfomr variables to new ones.
-#' This function is for the convenience of manipulate variables in batch.
+#' @title Transfomr variables to new ones.
+#'
+#' @description Function \code{tranv} is for the convenience of manipulate variables in batch.
+#'
 #' @param v.old a vector of names of variables to be manipulated.
 #' @param f the function to be applied to each variable in \code{vs}.
 #' @param v.new a vector of names for new variables.
@@ -20,16 +22,15 @@ tranv = function(v.old, f, v.new, ...){
         }
     }
 } 
-#' Run the function \code{f} with specified parameters.
+#' Function \code{collapse} run the specified function \code{f} 
+#' with the specified parameters.
 #' @rdname vtran
 #' @export
 collapse = function(f, ...){
     x = do.call(c, list(...))
     eval(parse(text=paste(quote(f), "(", paste(x, collapse=", "), ")", sep="")))
 }
-#' "Growth" function for vectors (time series variables).
-#' This is a generic function which allows you specify the 
-#' function to be applied to \code{x_{k}} and \code{x_{k-1}}.
+#' Function \code{growth} is a generic time series related function.
 #' @param x a vector of chronological data.
 #' @param g a function takes 2 arguments. 
 #' It has the form \code{g(x2, x1)},
@@ -41,12 +42,12 @@ collapse = function(f, ...){
 #' one have to use lag of 4.
 #' @param fixed.length logical; if \code{TRUE}, 
 #' return a vector of the same length as \code{x}.
-#' The first \code{lag} values of the returned vector is padded with \code{NA}.
-#' If \code{FALSE}, return a vector with \code{lag}-element shorter than \code{x}.
+#' The first \code{l} values of the returned vector is padded with \code{NA}.
+#' If \code{FALSE}, return a vector with \code{l}-element shorter than \code{x}.
 #' @param drop.names integer; the index of the name to be dropped.
 #' so you have to choose the name to be dropped.
 #' It doesn't matter if \code{x} doesn't have names.
-#' Usually you want drop either the first \code{lag} or the last \code{lag} names.
+#' Usually you want drop either the first \code{l} or the last \code{l} names.
 #' @rdname vtran
 #' @export
 #'
@@ -54,13 +55,13 @@ growth = function(x, g, l=1, fixed.length=FALSE, drop.names, ...){
     n = length(x)
     x.names = names(x)
     if(fixed.length){
-        x.na = c(rep(NA, lag), x[1:(n - lag)])
+        x.na = c(rep(NA, l), x[1:(n - l)])
         x = g(x, x.na, ...)
         names(x) = x.names
     }else{
-        x = g(x[-(1:lag)], x[-((n-lag+1):n)], ...)
+        x = g(x[-(1:l)], x[-((n-l+1):n)], ...)
         if(missing(drop.names)){
-            drop.names = 1:lag
+            drop.names = 1:l
         }
         names(x) = x.names[-drop.names]
     }
@@ -70,7 +71,7 @@ growth = function(x, g, l=1, fixed.length=FALSE, drop.names, ...){
 #' @rdname vtran
 #' @export
 lag = function(x, l=1, fixed.length=FALSE){
-    growth(x=x, f=function(x2, x1){x1}, lag=k, fixed.length=fixed.length)
+    growth(x=x, f=function(x2, x1){x1}, l=k, fixed.length=fixed.length)
 }
 #' Difference function as a special case of \code{growth}.
 #' @param times the order of differentiation.
@@ -79,7 +80,7 @@ lag = function(x, l=1, fixed.length=FALSE){
 diff = function(x, l=1, times=1, fixed.length=FALSE){
     i = 1
     while(i <= times){
-        x = growth(x=x, f=function(x2, x1){x2-x1}, lag=lag, fixed.length=fixed.length)
+        x = growth(x=x, f=function(x2, x1){x2-x1}, l=l, fixed.length=fixed.length)
         i = i + 1
     }
     x
@@ -89,18 +90,18 @@ diff = function(x, l=1, times=1, fixed.length=FALSE){
 #' @rdname vtran
 #' @export
 qtr.growth = function(q, fixed.length=FALSE){
-    growth(x=q, f=function(x2,x1){x2/x1-1}, lag=1, fixed.length=fixed.length)
+    growth(x=q, f=function(x2,x1){x2/x1-1}, l=1, fixed.length=fixed.length)
 }
 #' Annualized QoQ growth as a special case of \code{growth}.
 #' @rdname vtran
 #' @export
 qtr2ann.growth = function(q, fixed.length=FALSE){
-    growth(x=q, f=function(x2,x1){(x2/x1)^4-1}, lag=1, fixed.length=fixed.length)
+    growth(x=q, f=function(x2,x1){(x2/x1)^4-1}, l=1, fixed.length=fixed.length)
 }
 #' YoY growth as a special case of \code{growth}.
 #' @rdname vtran
 #' @export
 ann.growth = function(q, fixed.length=FALSE){
-    growth(x=q, f=function(x2,x1){x2/x1-1}, lag=4, fixed.length=fixed.length)
+    growth(x=q, f=function(x2,x1){x2/x1-1}, l=4, fixed.length=fixed.length)
 }
 
