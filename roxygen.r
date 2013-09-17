@@ -1,4 +1,4 @@
-#!/usr/bin/env Rscript
+#!/usr/bin/Rscript --no-site-file --no-init-file
 library(roxygen2)
 roxygenize("dclong.fs")
 f = 'dclong.fs/R/.Rhistory'
