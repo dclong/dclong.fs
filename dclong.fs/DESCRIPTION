@@ -10,18 +10,3 @@ Description: This packages offers many ways to open files and directories in R,
     directories), to search a string in files, to display files, to output
     result to files, and so on.
 License: GPL-2
-Collate:
-    'sym2str.r'
-    'trim.r'
-    'capitalize.r'
-    'dir.extension.r'
-    'is.file.r'
-    'path.r'
-    'history.r'
-    'readText.r'
-    'readMatrix.r.r'
-    'dir_def.r'
-    'replace.r'
-    'cd.r'
-    'change.r'
-    'tranv.r'
