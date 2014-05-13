@@ -26,18 +26,28 @@
 #' currentDir = getwd()
 #' cd(..)
 #' cd(currentDir)
-#' @export cd
-cd <- function(path,dd=NULL,lazy.input=TRUE)
-{
-  if(!(is.null(dd))){
-    return(setwd(getDirDef(dd)))
-  }
-  if(lazy.input){
-    path=symbolToString(substitute(path))
-  }
-  setwd(path)
+#' @export 
+#' @rdname cd
+cd = function(path,dd=NULL,lazy.input=TRUE) {
+    if(!(is.null(dd))){
+        path = getDirDef(dd)
+        setwd(path)
+        return(path)
+    }
+    if(lazy.input){
+        path = symbolToString(substitute(path))
+    }
+    setwd(path)
+    return(path)
+}
+#' @export 
+#' @rdname cd
+cs = function(path, dd=NULL, lazy.input=TRUE){
+    path = cd(path=path, dd=dd, lazy.input=lazy.input)
+    dir(path)
 }
 
 #' Linux style function for getting current work directory.
-#' @export
+#' @export 
+#' @rdname cd
 pwd = getwd

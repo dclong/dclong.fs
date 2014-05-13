@@ -1,4 +1,4 @@
-#' @title Transfomr variables to new ones.
+#' @title Transform variables to new ones.
 #'
 #' @description Function \code{tranv} is for the convenience of manipulate variables in batch.
 #'
