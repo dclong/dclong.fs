@@ -22,6 +22,7 @@ tranv = function(v.old, f, v.new, ...){
         }
     }
 } 
+
 #' Function \code{collapse} run the specified function \code{f} 
 #' with the specified parameters.
 #' @rdname vtran
@@ -30,6 +31,7 @@ collapse = function(f, ...){
     x = do.call(c, list(...))
     eval(parse(text=paste(quote(f), "(", paste(x, collapse=", "), ")", sep="")))
 }
+
 #' Function \code{growth} is a generic time series related function.
 #' @param x a vector of chronological data.
 #' @param g a function takes 2 arguments. 
@@ -50,6 +52,7 @@ collapse = function(f, ...){
 #' Usually you want drop either the first \code{l} or the last \code{l} names.
 #' @rdname vtran
 #' @export
+#' @TODO: padding with NA, NULL, etc?
 #'
 growth = function(x, g, l=1, fixed.length=FALSE, drop.names, ...){
     n = length(x)
@@ -67,12 +70,14 @@ growth = function(x, g, l=1, fixed.length=FALSE, drop.names, ...){
     }
     x
 }
+
 #' Lag function as a special case of \code{growth}.
 #' @rdname vtran
 #' @export
 lag = function(x, l=1, fixed.length=FALSE){
     growth(x=x, f=function(x2, x1){x1}, l=k, fixed.length=fixed.length)
 }
+
 #' Difference function as a special case of \code{growth}.
 #' @param times the order of differentiation.
 #' @rdname vtran
@@ -85,23 +90,27 @@ diff = function(x, l=1, times=1, fixed.length=FALSE){
     }
     x
 }
-#' QoQ growth as a special case of \code{growth}.
+
+#' Quarter-over-quarter (QoQ) growth as a special case of \code{growth}.
 #' @param q quarterly data.
 #' @rdname vtran
 #' @export
 qtr.growth = function(q, fixed.length=FALSE){
     growth(x=q, f=function(x2,x1){x2/x1-1}, l=1, fixed.length=fixed.length)
 }
+
 #' Annualized QoQ growth as a special case of \code{growth}.
 #' @rdname vtran
 #' @export
 qtr2ann.growth = function(q, fixed.length=FALSE){
     growth(x=q, f=function(x2,x1){(x2/x1)^4-1}, l=1, fixed.length=fixed.length)
 }
+
 #' YoY growth as a special case of \code{growth}.
 #' @rdname vtran
 #' @export
 ann.growth = function(q, fixed.length=FALSE){
     growth(x=q, f=function(x2,x1){x2/x1-1}, l=4, fixed.length=fixed.length)
 }
+
 
