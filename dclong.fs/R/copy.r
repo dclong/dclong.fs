@@ -10,5 +10,5 @@
 #' }
 #' @export copy
 copy <- function(x){ 
-    write.table(x=x, file="clipboard", row.names=FALSE, colnames=FALSE)
+    write.table(x=x, file="clipboard", row.names=FALSE, col.names=FALSE)
 }
