@@ -71,7 +71,7 @@ growth = function(x, g, l=1, fixed.length=FALSE, drop.names, ...){
 #' @rdname vtran
 #' @export
 lag = function(x, l=1, fixed.length=FALSE){
-    growth(x=x, f=function(x2, x1){x1}, l=k, fixed.length=fixed.length)
+    growth(x=x, f=function(x2, x1){x1}, l=l, fixed.length=fixed.length)
 }
 #' Difference function as a special case of \code{growth}.
 #' @param times the order of differentiation.
