@@ -1,9 +1,9 @@
 
 #' @title File and Directory Manipulation.
 #' @description The following functions offers ways to manipulate paths. 
-#' Function \code{combinePath} combines paths without worrying about the annoying trailing and leading "/";
-#' function \code{fileName} gets the file name from the path of a file;
-#' function \code{fileExtension} gets the file extension from the path of the a file.
+#' Function \code{join_path} combines paths without worrying about the annoying trailing and leading "/";
+#' function \code{file_name} gets the file name from the path of a file;
+#' function \code{file_extension} gets the file extension from the path of the a file.
 #' @author Chuanlong Benjamin Du
 
 
@@ -11,14 +11,14 @@
 #' @param \dots relavtive paths.
 #' @return the full path by combining the base and relative path.
 #' @seealso \code{\link{fileName}}, \code{\link{fileExtension}}.
-#' @keywords combine path
+#' @keywords combine join path file name extension
 #' @examples
 #' \dontrun{
-#' combinePath("D:/Study/","/hello.txt")}
+#' join_path("D:/Study/", "/hello.txt")}
 #' @export
 #' @rdname path
-combinePath <-
-function(base,...)
+join_path <-
+function(base, ...)
 {
   #dots=match.call(expand.dots = FALSE)$...
   dots=list(...)
@@ -44,14 +44,14 @@ function(base,...)
 
 #' @examples
 #' \dontrun{
-#' fileName("C:/hello.txt",FALSE)}
+#' file_name("C:/hello.txt",FALSE)}
 #' @export 
 #' @rdname path
 #' @param path a string vector.
 #' @param full logical; whether to return full path or not.
 #' @param extension logical; whether to keep extension or not.
-fileName <-
-function(path,extension=TRUE,full=FALSE)
+file_name <-
+function(path, extension=TRUE, full=FALSE)
 {
   if(extension){
     if(full){
@@ -59,7 +59,7 @@ function(path,extension=TRUE,full=FALSE)
     }
     return(basename(path))
   }
-  path = gsub("\\.[^.]*$","",path)
+  path = gsub("\\.[^.]*$", "", path)
   if(full){
     return(path)
   }
@@ -68,23 +68,21 @@ function(path,extension=TRUE,full=FALSE)
 
 #' @export 
 #' @rdname path
-fname = fileName
 
 #' @export 
 #' @rdname path
-#' @param keep.dot logical; if true then the dot is kept in the file extensions,
+#' @param keep_dot logical; if true then the dot is kept in the file extensions,
 #' o.w., it's removed from the file extensions.
-fileExtension <-
-function(path,keep.dot=TRUE)
+file_extension <-
+function(path, keep_dot=TRUE)
 {
-  file.name=fileName(path=path,extension=TRUE,full=FALSE)
-  if(keep.dot){
-    ifelse(regexpr(pattern=".",text=file.name,fixed=TRUE)>0,paste(".",gsub("^.*\\.","",file),sep=""),"")
+  file.name = file_name(path=path, extension=TRUE, full=FALSE)
+  if(keep_dot){
+    ifelse(regexpr(pattern=".", text=file.name, fixed=TRUE)>0, paste(".", gsub("^.*\\.", "", file), sep=""), "")
   }else{
-    ifelse(regexpr(pattern=".",text=file.name,fixed=TRUE)>0,gsub("^.*\\.","",file),"")
+    ifelse(regexpr(pattern=".", text=file.name, fixed=TRUE)>0, gsub("^.*\\.", "", file), "")
   }
 }
 #' @export 
 #' @rdname path
-fext=fileExtension
 
