@@ -21,7 +21,7 @@ join_path <-
 function(base, ...)
 {
   #dots=match.call(expand.dots = FALSE)$...
-  dots=list(...)
+  dots = list(...)
   if(length(dots))
   {
     if(!all(sapply(dots, FUN=function(x) is.symbol(x)||is.character(x))))
@@ -29,17 +29,17 @@ function(base, ...)
   }
   else
     return(base)
-  names <- sapply(dots, as.character)
-  names=gsub("^\\\\","",names)
-  names=gsub("^/","",names)
-  names=gsub("\\\\$","",names)
-  names=gsub("/$","",names)
-  names=paste(names,collapse="/")
+  names = sapply(dots, as.character)
+  names = gsub("^\\\\","",names)
+  names = gsub("^/","",names)
+  names = gsub("\\\\$","",names)
+  names = gsub("/$","",names)
+  names = paste(names,collapse="/")
   #------------------------------------------
-  base=gsub("\\\\$","",base)
-  base=gsub("/$","",base)
+  base = gsub("\\\\$","",base)
+  base = gsub("/$","",base)
   #------------------------------------------
-  paste(base,names,sep="/")
+  paste(base, names, sep="/")
 }
 
 #' @examples
