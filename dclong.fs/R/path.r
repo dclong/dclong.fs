@@ -83,6 +83,4 @@ function(path, keep_dot=TRUE)
     ifelse(regexpr(pattern=".", text=file.name, fixed=TRUE)>0, gsub("^.*\\.", "", file), "")
   }
 }
-#' @export 
-#' @rdname path
 
