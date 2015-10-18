@@ -17,7 +17,7 @@
 #' @export
 h = function(pattern,select,old,new,preview=FALSE,max.show=25,reverse = FALSE,lazy.input=TRUE,...){
     if(lazy.input){
-        pattern=symbolToString(substitute(pattern),eval=FALSE)
+        pattern=symbol_to_string(substitute(pattern),eval=FALSE)
     }
     file1 <- tempfile("Rrawhist")
     savehistory(file1)
@@ -44,8 +44,8 @@ h = function(pattern,select,old,new,preview=FALSE,max.show=25,reverse = FALSE,la
     command = rawhist[inds][select]
     if(!missing(old)&&!missing(new)){
         if(lazy.input){
-            old = symbolToString(substitute(old),eval=FALSE)
-            new = symbolToString(substitute(new),eval=FALSE)
+            old = symbol_to_string(substitute(old),eval=FALSE)
+            new = symbol_to_string(substitute(new),eval=FALSE)
         }
         gsub(old,new,command,...) -> command
     }

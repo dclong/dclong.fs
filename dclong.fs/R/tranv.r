@@ -52,7 +52,6 @@ collapse = function(f, ...){
 #' Usually you want drop either the first \code{l} or the last \code{l} names.
 #' @rdname vtran
 #' @export
-#' @TODO: padding with NA, NULL, etc?
 #'
 growth = function(x, g, l=1, fixed.length=FALSE, drop.names, ...){
     n = length(x)

@@ -10,7 +10,7 @@
 #' @param base the base path.
 #' @param \dots relavtive paths.
 #' @return the full path by combining the base and relative path.
-#' @seealso \code{\link{fileName}}, \code{\link{fileExtension}}.
+#' @seealso \code{\link{file_name}}, \code{\link{file_extension}}.
 #' @keywords combine join path file name extension
 #' @examples
 #' \dontrun{

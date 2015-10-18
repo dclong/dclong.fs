@@ -13,15 +13,14 @@
 
 #' @export 
 #' @rdname cap 
-capitalize <-
-function(x)
-{
-  x=symbolToString(substitute(x))
-  if(!is.character(x))
-    x=as.character(x)
-  gsub("\\b(\\w)","\\U\\1",x,perl=TRUE)
+capitalize <- function(x) {
+    x = symbol_to_string(substitute(x))
+    if(!is.character(x)) {
+        x = as.character(x)
+    }
+    gsub("\\b(\\w)", "\\U\\1", x, perl=TRUE)
 }
 
 #' @export
 #' @rdname cap
-cap=capitalize
+cap = capitalize

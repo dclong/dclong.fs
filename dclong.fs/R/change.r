@@ -65,9 +65,9 @@ changeFileContent = function(old, new, fpattern = NULL, cfixed = FALSE,
 cignore.case = FALSE, fignore.case = TRUE, path = getwd(), 
 dd = NULL, all = TRUE, interact = TRUE, lazy.input = TRUE, ...) {
     if(lazy.input){
-        old = symbolToString(substitute(old))
-        new = symbolToString(substitute(new))
-        fpattern = symbolToString(substitute(fpattern))
+        old = symbol_to_string(substitute(old))
+        new = symbol_to_string(substitute(new))
+        fpattern = symbol_to_string(substitute(fpattern))
     }
     if(!is.null(dd)){
         path = getDirDef(dd)
@@ -106,9 +106,9 @@ cfc = changeFileContent
 changeFileName = function(old, new, fpattern = NULL, cfixed = FALSE, cignore.case = TRUE, 
 fignore.case = TRUE, path = getwd(), dd = NULL, all = TRUE, interact = TRUE, lazy.input = TRUE, ...) {
     if(lazy.input){
-        old = symbolToString(substitute(old))
-        new = symbolToString(substitute(new))
-        fpattern = symbolToString(substitute(fpattern))
+        old = symbol_to_string(substitute(old))
+        new = symbol_to_string(substitute(new))
+        fpattern = symbol_to_string(substitute(fpattern))
     }
     if(!is.null(dd)){
         path = getDirDef(dd)
@@ -120,7 +120,7 @@ fignore.case = TRUE, path = getwd(), dd = NULL, all = TRUE, interact = TRUE, laz
     }
     if(interact){
         #check which files are to be changed
-        file.names = fileName(path = files, extension = TRUE, full = FALSE)
+        file.names = file_name(path = files, extension = TRUE, full = FALSE)
         file.names = grep(pattern = old, x = file.names, 
                           ignore.case = cignore.case, value = TRUE, fixed = cfixed, ...)
         if(length(file.names) == 0){
@@ -222,7 +222,7 @@ changeFileContentOneByOne = function(old, new, files, cfixed, cignore.case, all,
 
 changeOneFileContent = function(old, new, file, cfixed, cignore.case, all, ...){
     #read the file content
-    fileContent = readText(file = file, lazy.input = FALSE)
+    fileContent = read_text(file = file, lazy.input = FALSE)
     #replace old string with new string
     if(all){
         fileContent = gsub(pattern = old, replacement = new, x=fileContent, 
@@ -254,8 +254,8 @@ newFileName = function(old, new, files, cfixed, cignore.case, all, ...){
 }
 
 changeOneName = function(files, path){
-    from = combinePath(path, files[1])
-    to = combinePath(path, files[2])
+    from = join_path(path, files[1])
+    to = join_path(path, files[2])
     file.rename(from = from, to = to)
 }
 

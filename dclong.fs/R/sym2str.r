@@ -18,47 +18,44 @@
 #' sym2str(x)
 #' }
 
-#' @export symbolToString
+#' @export symbol_to_string
 #' @rdname sym2str
-symbolToString <-
-function(x,eval=TRUE)
-{
-  #result=try(exists(x,envir<-envir),silent=TRUE)
-  result<-try(class(x),silent=TRUE)
-  if(result=='name'){
-    if(eval){
-        result=try(eval(x),silent=TRUE)
-        if(class(result)=='try-error'){
-          return(deparse(x))
+symbol_to_string <- function(x, eval = TRUE) {
+    # result=try(exists(x,envir<-envir),silent=TRUE)
+    result <- try(class(x), silent = TRUE)
+    if (result == "name") {
+        if (eval) {
+            result = try(eval(x), silent = TRUE)
+            if (class(result) == "try-error") {
+                return(deparse(x))
+            } else {
+                return(as.character(result))
+            }
         }
-        else{
-          return(as.character(result))
-        }
+        return(as.character(x))
     }
-    return(as.character(x))
-  }
-  if(class(result)=='try-error'){
-    return(deparse(substitute(x)))
-  }
-  if(result=='call'){
-      if(eval){
-        return(as.character(eval(x)))
-      }
-      return(as.character(x))
-  }
-  if(result=="numeric" || result=="NULL" || result=="logical"){
-    return(as.character(x))
-  }
-  if(result=="function"){
-    return(deparse(substitute(x)))
-  }
-  if(result=="character"){
-    return(x)
-  }
-  stop("argument x cannot be coerced to character.")
+    if (class(result) == "try-error") {
+        return(deparse(substitute(x)))
+    }
+    if (result == "call") {
+        if (eval) {
+            return(as.character(eval(x)))
+        }
+        return(as.character(x))
+    }
+    if (result == "numeric" || result == "NULL" || result == "logical") {
+        return(as.character(x))
+    }
+    if (result == "function") {
+        return(deparse(substitute(x)))
+    }
+    if (result == "character") {
+        return(x)
+    }
+    stop("argument x cannot be coerced to character.")
 }
 
 #' @export
 #' @rdname sym2str
-sym2str = symbolToString
-
+sym2str = symbol_to_string
+ 

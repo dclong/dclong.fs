@@ -28,18 +28,40 @@
 #' cd(currentDir)
 #' @export 
 #' @rdname cd
-cd = function(path,dd=NULL,lazy.input=TRUE) {
+cd = function(path, dd=NULL, lazy.input=TRUE) {
     if(!(is.null(dd))){
         path = getDirDef(dd)
         setwd(path)
         return(path)
     }
     if(lazy.input){
-        path = symbolToString(substitute(path))
+        path = symbol_to_string(substitute(path))
     }
     setwd(path)
     return(path)
 }
+
+cd.1 = function(){
+    setwd("..")
+    return("..")
+}
+
+cd.2 = function(){
+    setwd("../..")
+    return("../..")
+}
+
+cd.3 = function(){
+    setwd("../../..")
+    return("../../..")
+}
+
+cd.4 = function(){
+    setwd("../../../..")
+    return("../../../..")
+}
+
+
 #' @export 
 #' @rdname cd
 cs = function(path, dd=NULL, lazy.input=TRUE){

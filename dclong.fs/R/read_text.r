@@ -7,7 +7,7 @@
 #' @param lazy.input logical; If true, then simple string (without white spaceand other special characters) can be used without double or single quotation.
 #' @return the content of the text file.
 #' @author Chuanlong Benjamin Du
-#' @seealso \code{\link[base]{readLines}}, \code{\link{readMatrix}}.
+#' @seealso \code{\link[base]{readLines}}, \code{\link{read_matrix}}.
 #' @keywords read file text
 #' @examples
 #' \dontrun{
@@ -17,21 +17,20 @@
 #' #write something into the file
 #' cat("adf;f;",file=fileName)
 #' #read the text out
-#' readText(fileName)
+#' read_text(fileName)
 #' }
-#' @export readText
-readText <-
-function(title, path=getwd(), file=NULL,lazy.input=TRUE)
-{
-  if(lazy.input){
-    if(is.null(file)){#don't get rid of substitute
-      title=symbolToString(substitute(title))
-      path=symbolToString(substitute(path))
-      file=combinePath(path,title)
+#' @export 
+#' @rdname read_text 
+read_text <- function(title, path=getwd(), file=NULL, lazy.input=TRUE) {
+    if(lazy.input){
+        if(is.null(file)){#don't get rid of substitute
+            title = symbol_to_string(substitute(title))
+            path = symbol_to_string(substitute(path))
+            file = join_path(path, title)
+        }
+        else{
+            file = symbol_to_string(substitute(file))
+        }
     }
-    else{
-      file=symbolToString(substitute(file))
-    }
-  }
-  paste(readLines(file), collapse = "\n")
+    paste(readLines(file), collapse="\n")
 }
