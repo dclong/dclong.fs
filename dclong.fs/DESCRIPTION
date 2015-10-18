@@ -1,7 +1,7 @@
 Package: dclong.fs
 Type: Package
 Title: File and Directory Manipulation
-Version: 1.0-1
+Version: 1.0-2
 Date: 2011-03-20
 Author: Chuanlong Benjamin Du
 Maintainer: <dclong@iastate.edu>
