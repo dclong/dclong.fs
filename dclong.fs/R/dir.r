@@ -797,6 +797,22 @@ dir.dll = dir_dll
 
 #' @export 
 #' @rdname dir
+dir_rmd <- function(path = ".", dd, pattern, exact = FALSE, all.files = FALSE, full.names = FALSE, 
+    recursive = FALSE, include.dirs = FALSE, lazy.input = TRUE, ...) {
+    if (lazy.input) {
+        path = symbol_to_string(substitute(path))
+    }
+    dir_extension(extension = ".rmd", path = path, dd = dd, pattern = pattern, exact = exact, 
+        all.files = all.files, full.names = full.names, recursive = recursive, include.dirs = include.dirs, 
+        lazy.input = FALSE)
+}
+
+#' @export 
+#' @rdname dir
+dir.rmd = dir_rmd
+
+#' @export 
+#' @rdname dir
 dir_so <- function(path = ".", dd, pattern, exact = FALSE, all.files = FALSE, full.names = FALSE, 
     recursive = FALSE, include.dirs = FALSE, lazy.input = TRUE, ...) {
     if (lazy.input) {
