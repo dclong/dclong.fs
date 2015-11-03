@@ -16,20 +16,13 @@
 
 #' @export
 #' @rdname trim
-leftTrim <-
-function(x,ws=TRUE)
-{
-  if(ws)
-  {
-    x=gsub("^[[:space:]]+","",x)
-    return(x)
-  }
-  gsub("^ +","",x)
+ltrim = function(x, ws=TRUE) {
+    if(ws){
+        x=gsub("^[[:space:]]+", "", x)
+        return(x)
+    }
+    gsub("^ +", "", x)
 }
-
-#' @export
-#' @rdname trim
-ltrim = leftTrim
 
 #' @export
 #' @rdname trim
@@ -37,20 +30,13 @@ ltrim = leftTrim
 #' \dontrun{
 #' #get rid of trailing white spaces
 #' rtrim(txt)}
-rightTrim <-
-function(x,ws=TRUE)
-{
-  if(ws)
-  {
-    x=gsub("[[:space:]]+$","",x)
-    return(x)
-  }
-  gsub(" +$","",x)
+rtrim = function(x, ws=TRUE){
+    if(ws){
+        x=gsub("[[:space:]]+$", "", x)
+        return(x)
+    }
+    gsub(" +$", "", x)
 }
-
-#' @export
-#' @rdname trim
-rtrim = rightTrim
 
 #' @export
 #' @rdname trim
@@ -58,8 +44,6 @@ rtrim = rightTrim
 #' \dontrun{
 #' #get rid of both leading and trailing white spaces
 #' trim(txt)}
-trim <-
-function(x,ws=TRUE)
-{
-  rtrim(ltrim(x,ws),ws)
+trim = function(x, ws=TRUE){
+    rtrim(ltrim(x, ws), ws)
 }
